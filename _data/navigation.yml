@@ -1,0 +1,8 @@
+# main links
+main:
+  - title: "Home"
+    url: https://afmagee.github.io/
+  - title: "Research"
+    url: /research/
+  - title: "Code and Software"
+    url: /code_software/
