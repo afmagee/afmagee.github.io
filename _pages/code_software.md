@@ -1,7 +1,7 @@
 ---
 title: "Code and Software"
 filename: _pages/code_software.md
-permalink: /code_software.html
+permalink: /code_software/
 ---
 
 I contribute to the open source phylogenetic inference software [RevBayes](https://revbayes.github.io/), including code for birth-death and coalescent likelihoods, univariate distributions, and MCMC moves.

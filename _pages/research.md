@@ -1,7 +1,7 @@
 ---
 title: "Research"
 filename: _pages/research.md
-permalink: /research.html
+permalink: /research/
 ---
 
 ## Birth-death modeling
