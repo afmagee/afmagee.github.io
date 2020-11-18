@@ -17,7 +17,7 @@ This is a question of model selection.
 In recent years, the phylogenetics community has become increasingly interested in whether any of these models actually fit the data at hand.
 This is a question of model adequacy.
 In a Bayesian framework, we can address the matter of model adequacy through posterior predictive simulations, where we simulate new datasets that our (fit-to-data) model predicts and compare attributes of these datasets to our real data.
-In my research, I have found that alignment-based posterior predictive checks may not be able to [distinguish between tree priors](https://doi.org/10.1111/biom.13273), but they are capable of [detecting epistasis]().
+In my research, I have found that alignment-based posterior predictive checks may not be able to [distinguish between tree priors](https://doi.org/10.1111/biom.13273), but they are capable of [detecting epistasis](https://www.biorxiv.org/content/10.1101/2020.11.17.387365v1).
 
 ## Improving phylogenetic inference
 Inferring phylogenies, and the parameters of phylogenetic models, can be a painful, and painfully slow, process.
