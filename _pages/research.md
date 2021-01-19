@@ -6,9 +6,13 @@ permalink: /research/
 
 ## Birth-death modeling
 Birth-death models link time-calibrated phylogenies to birth, death, and sampling rates through time.
-In macroevolutionary contexts, this means estimating rates of speciation, extinction, and fossilization, while in infectious disease phylodynamic contexts we use some algebra these parameters to estimate the effective reproductive number.
+In macroevolutionary contexts, this means estimating rates of speciation, extinction, and fossilization, while in infectious disease phylodynamic contexts we use some algebra on these parameters to estimate the effective reproductive number.
 I have worked to develop a time-varying birth-death prior, the [Horseshoe Markov random field](https://doi.org/10.1371/journal.pcbi.1007999) (HSMRF) birth-death model, that is applicable to both macroevolutionary and phylodynamic cases.
 By providing temporal smoothing, the HSMRF allows for fine-scaled estimation of birth and death rates through time.
+With my colleague Sebastian Hoehna, I have also developed the [generalized episodic fossilized birth-death model](https://www.biorxiv.org/content/10.1101/2021.01.14.426715v1).
+This is a time-varying birth-death model which integrates fossils and extant taxa and thus allows for better estimation of diversification rates through time and mass extinctions than trees of extant taxa alone.
+It is also capable of modeling simultaneous speciation across lineages, mass sampling events, and (for use in phylodynamic modeling) treatment.
+
 
 ## Phylogenetic model adequacy
 For a long time, the phylogenetics modeling community was primarily concerned with choosing the *best* model out of a set of candidates.
@@ -18,6 +22,7 @@ In recent years, the phylogenetics community has become increasingly interested 
 This is a question of model adequacy.
 In a Bayesian framework, we can address the matter of model adequacy through posterior predictive simulations, where we simulate new datasets that our (fit-to-data) model predicts and compare attributes of these datasets to our real data.
 In my research, I have found that alignment-based posterior predictive checks may not be able to [distinguish between tree priors](https://doi.org/10.1111/biom.13273), but they are capable of [detecting epistasis](https://www.biorxiv.org/content/10.1101/2020.11.17.387365v1).
+I have also developed a handful of posterior predictive test statistics applicable for assessing the adequacy of [birth-death models](https://www.biorxiv.org/content/10.1101/2021.01.14.426715v1)
 
 ## Improving phylogenetic inference
 Inferring phylogenies, and the parameters of phylogenetic models, can be a painful, and painfully slow, process.
