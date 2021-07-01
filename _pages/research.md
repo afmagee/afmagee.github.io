@@ -9,7 +9,8 @@ Birth-death models link time-calibrated phylogenies to birth, death, and samplin
 In macroevolutionary contexts, this means estimating rates of speciation, extinction, and fossilization, while in infectious disease phylodynamic contexts we use some algebra on these parameters to estimate the effective reproductive number.
 I have worked to develop a time-varying birth-death prior, the [Horseshoe Markov random field](https://doi.org/10.1371/journal.pcbi.1007999) (HSMRF) birth-death model, that is applicable to both macroevolutionary and phylodynamic cases.
 By providing temporal smoothing, the HSMRF allows for fine-scaled estimation of birth and death rates through time.
-With my colleague Sebastian Hoehna, I have also developed the [generalized episodic fossilized birth-death model](https://www.biorxiv.org/content/10.1101/2021.01.14.426715v1).
+I gave a talk (available [here](https://www.youtube.com/watch?v=_b2evwyo9Q4)) with my colleague Bjørn Kopperud on how these HSMRF models interact with the problem of [birth-death model nonidentifiability](https://www.nature.com/articles/s41586-020-2176-1).
+With my colleague Sebastian Höhna, I have also developed the [generalized episodic fossilized birth-death model](https://www.biorxiv.org/content/10.1101/2021.01.14.426715v1).
 This is a time-varying birth-death model which integrates fossils and extant taxa and thus allows for better estimation of diversification rates through time and mass extinctions than trees of extant taxa alone.
 It is also capable of modeling simultaneous speciation across lineages, mass sampling events, and (for use in phylodynamic modeling) treatment.
 
@@ -26,6 +27,6 @@ I have also developed a handful of posterior predictive test statistics applicab
 
 ## Improving phylogenetic inference
 Inferring phylogenies, and the parameters of phylogenetic models, can be a painful, and painfully slow, process.
-Implmenting phylogenetic models such as the HSMRF birth-death model requires carefully thinking about MCMC moves and operators, especially because we cannot often rely on tricks used in other fields.
+Implementing phylogenetic models such as the HSMRF birth-death model requires carefully thinking about MCMC moves and operators, especially because we cannot often rely on tricks used in other fields.
 I am interested in how we can build smarter proposals for phylogenetic models, and especially for phylogenetic trees, to speed up Baysian phylogenetic inference.
 I am also interested in alternatives to standard Bayesian phylogenetic inference, which I helped investigate in a pair of papers, one on [quickly computing the marginal likelihood of tree topologies](https://doi.org/10.1093/sysbio/syz046), and one on [exploring treespace without MCMC](https://doi.org/10.1093/sysbio/syz047).
