@@ -15,17 +15,17 @@ This is a time-varying birth-death model which integrates fossils and extant tax
 It is also capable of modeling simultaneous speciation across lineages, mass sampling events, and (for use in phylodynamic modeling) treatment.
 
 
-## Phylogenetic model adequacy
-For a long time, the phylogenetics modeling community was primarily concerned with choosing the *best* model out of a set of candidates.
-For example, taking a phylogeny and asking if birth rates were constant, piecewise constant, or increased exponentially.
-This is a question of model selection.
-In recent years, the phylogenetics community has become increasingly interested in whether any of these models actually fit the data at hand.
-This is a question of model adequacy.
+## Validating Bayesian phylogenetic inference
+Phylogenetic models are complex, and it can be difficult to understand how far we can trust our inferences.
+There are two related questions that must be addressed: are we confident that our inference procedure worked, and is our model good enough to use?
+In Bayesian inference, addressing this first question requires the use of MCMC convergence diagnostics.
+I have worked to extend notions of the [effective sample size to trees](https://arxiv.org/abs/2109.07629), so that we can see whether our MCMC is giving us trustworthy output for the key parameter.
+The second question is one of model adequacy.
 In a Bayesian framework, we can address the matter of model adequacy through posterior predictive simulations, where we simulate new datasets that our (fit-to-data) model predicts and compare attributes of these datasets to our real data.
 In my research, I have found that alignment-based posterior predictive checks may not be able to [distinguish between tree priors](https://doi.org/10.1111/biom.13273), but they are capable of [detecting epistasis](https://www.biorxiv.org/content/10.1101/2020.11.17.387365v1).
 I have also developed a handful of posterior predictive test statistics applicable for assessing the adequacy of [birth-death models](https://www.biorxiv.org/content/10.1101/2021.01.14.426715v1)
 
-## Improving phylogenetic inference
+## Speeding and scaling phylogenetic inference up
 Inferring phylogenies, and the parameters of phylogenetic models, can be a painful, and painfully slow, process.
 Implementing phylogenetic models such as the HSMRF birth-death model requires carefully thinking about MCMC moves and operators, especially because we cannot often rely on tricks used in other fields.
 I am interested in how we can build smarter proposals for phylogenetic models, and especially for phylogenetic trees, to speed up Baysian phylogenetic inference.

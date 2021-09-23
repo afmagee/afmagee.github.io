@@ -96,7 +96,7 @@ author:
   name             : "Andrew Magee"
   avatar           : "/assets/images/afm.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "All things Bayesian phylogenetics."
-  location         : "UW Seattle"
+  location         : "UCLA"
   email            :
   links:
     - label: "Email"
