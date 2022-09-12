@@ -145,6 +145,7 @@ footer:
 include:
   - .htaccess
   - _pages
+
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -265,6 +266,11 @@ compress_html:
   ignore:
     envs: development
 
+# https://ben.balter.com/2015/02/20/jekyll-collections/
+collections:
+  blog:
+    output: true
+    permalink: /blog/:path/
 
 # Defaults
 defaults:
