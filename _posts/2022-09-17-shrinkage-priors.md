@@ -4,7 +4,7 @@ author_profile: true
 layout: single
 ---
 
-## A tail of two shrinkage priors
+# A tail of two shrinkage priors
 
 Two priors, both alike in dignity, in fair Bayesian inference, where we lay our scene...
 
@@ -18,7 +18,7 @@ First, a 0/1 component that determines whether the variable has any effect (an i
 Then, a conditional prior for when the coefficient is not 0.
 BSSVS makes use of what are called spike-and-slab priors, which are closely related to the focus here: shrinkage priors.
 
-### What is a shrinkage prior?
+## What is a shrinkage prior?
 Shrinkage priors are ways of saying "I think this parameter has a particular value, but perhaps it's actually different."
 For regression models, the fixed value is generally 0, which says the covariate has no effect and essentially removes the variable from the model.
 But unlike the mixture approach that spike-and-slab distributions take, shrinkage priors are fully continuous distributions.
@@ -33,7 +33,7 @@ The tails, meanwhile, allow for the variable to take on a relatively wide range 
 
 Many shrinkage priors can be represented as a scale mixture of normal distributions (meaning a mixture over the scale/variance parameter rather than the location/mean parameter), which can be convenient, both for understanding the distribution and for sampling.
 
-### The Horseshoe
+## The Horseshoe
 The Horseshoe prior [(Carvalho *et al*, 2009)](http://proceedings.mlr.press/v5/carvalho09a/carvalho09a.pdf) is a commonly-employed shrinkage prior, used for things from sparse regression to [coalescent models](https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.13276). The distribution is characterized by two parameters.
 
 - The location (which we will ignore and assume to be 0)
@@ -68,7 +68,7 @@ As a way around that, we can put a prior on the global scale and infer it.
 This gives us additional wiggle room in case we don't get the value quite right.
 A convenient form of prior is the Cauchy$^+$ distribution, in which case we can use a Gibbs sampler to update $\boldsymbol{\lambda}$ and $\sigma$.
 
-### The Bayesian Bridge
+## The Bayesian Bridge
 The Bayesian Bridge [(Polson _et al._ 2011)](https://arxiv.org/abs/1109.2279) is characterized by up to three parameters.
 
 - The location (which we will ignore and assume to be 0)
@@ -94,26 +94,26 @@ In the limit as $r,s \to 0$, this density is proportional to $\sigma^{-1}$ which
 
 The Bayesian Bridge is also known as the Generalized Normal Distribution, and you can play around with it in `R` using the package `gnorm`.
 
-### Which distribution should I use in practice?
+## Which distribution should I use in practice?
 To be clear, both the Bayesian Bridge and Horseshoe are workable shrinkage priors.
 But there are reasons one might favor one over the other.
 The short version is that the Horseshoe is far spikier and has fatter tails than the Bayesian Bridge.
 In some ways, this is a point in favor of the Horseshoe.
 On the other hand, those extreme tails can leave imprints on the posterior distribution when there isn't a _lot_ of information in the data.
 
-#### Points in favor of the Horseshoe
+### Points in favor of the Horseshoe
 
 The Horseshoe is also very easy to draw IID samples from, as the Cauchy distribution is widely available in software (and not that hard to implement by hand if needed).
 Sampling from the Bayesian Bridge is possible, but implementations of the Generalized Normal Distribution are not particularly common, nor are implementations of exponentially-tilted stable distributions.
 I think it is also easier to contemplate a $\text{Cauchy}^+$ distribution on the global scale $\sigma$ than a $\text{Gamma}$ on $\sigma^{-\alpha}$.
 
-#### Points in favor of the Bayesian Bridge
+### Points in favor of the Bayesian Bridge
 When using either the Bayesian Bridge or Horseshoe as a prior, we must consider their behavior in MCMC.
 The mixing for the Horseshoe's global scale parameter can be quite painful in practice, regardless of whether you use a Gibbs sampler or Hamiltonian Monte Carlo.
 The Bayesian Bridge global scale mixes much more rapidly, possibly because the local scales can be analytically integrated out by using the closed-form representation of the density function.
 
 
-### Who regularizes the regularizers?
+## Who regularizes the regularizers?
 As it turns out, like all good things, there is a limit to how fat you might want the tails of a shrinkage prior.
 The sheer prior mass of the tails can be hard to overcome and can leave posterior distributions that are much wider than they need to be.
 
@@ -133,7 +133,7 @@ Setting all $z_i = 0$ then induces a conditional Normal on $x_i$ with the above 
 By sneaking this in through the likelihood, their approach leaves the Gibbs samplers for $\boldsymbol{\lambda}$ and $\sigma$ intact, which is entirely convenient.
 One can also use this fake-data formulation directly in software like stan or RevBayes to tamp down on the tails of your shrinkage prior of choice (so long as you can represent it as a scale mixture of normals).
 
-#### Things that go bump in the night
+### Things that go bump in the night
 One oddity does crop up when using these regularized shrinkage priors, and that is how to consider the prior itself.
 The fake data $\boldsymbol{z}$ are treated mathematically as part of the likelihood but are in fact part of the prior.
 This means that the _effective_ priors on $\boldsymbol{\lambda}$ and $\sigma$ are altered from those which are specified.
@@ -156,7 +156,7 @@ And if you get a bimodal distribution (which is somewhat common), then there is 
 We'll ignore all those posteriors with a spike and a long arm on one side, because I still don't know what to make of them (very weak evidence?).
 
 
-### All shrinkage is local
+## All shrinkage is local
 I want to close with one last point about these global-local mixture-of-Normals models.
 Which is that when we apply the right version of them to time-series models, we end up with a property we call local adaptivity [(Faulkner and Minin, 2017)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5942601/).
 Local adaptivity is an ability to capture rapid change in some regions and slower (or no) change in others.
