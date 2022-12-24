@@ -4,7 +4,7 @@ author_profile: true
 layout: single
 ---
 
-# A tail of two shrinkage priors
+<!-- # A tail of two shrinkage priors -->
 
 Two priors, both alike in dignity, in fair Bayesian inference, where we lay our scene...
 

@@ -4,7 +4,7 @@ author_profile: true
 layout: single
 ---
 
-# What is a Bayesian t-test?
+<!-- # What is a Bayesian t-test? -->
 
 For some time[^1] I've wondered whether the things we talk about as Bayesian analogs of null hypothesis significance tests are what we say they are.
 This has been on my mind even more after reading one of [Dan Simpson's blog posts](https://dansblog.netlify.app/posts/2022-11-12-robins-ritov/robins-ritov.html), which had as a moral, "If you’re going to make Bayes work for you, think in terms of observables rather than parameters."
