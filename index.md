@@ -14,6 +14,3 @@ If you have questions about phylogenetics, feel free to send me an email.
 ## CV
 
 My CV is available <a href="./assets/CV/Andrew_Magee_CV.pdf" target="_blank">here.</a>
-
-## Contact
-afmagee at ucla.edu
