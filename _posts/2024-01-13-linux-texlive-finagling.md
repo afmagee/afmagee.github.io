@@ -35,6 +35,8 @@ tlmgr option repository ftp://tug.org/historic/systems/texlive/<year>/tlnet-fina
 I don't think you need to remove the old[^8] useless repository, but I did. 
 You can see what it is with `tlmgr list` and remove it with `tlmgr repository remove <repo>`.
 
+The only wrinkle here being you still need to know what the package is actually called, and that may well not be what you put in `\usepackage{}`.
+
 [^1]: Well, as long as I've used it relatively seriously. We had a fling in high school, but I had even less idea what I was doing then than I do now. So, that is to say, not _that_ long.
 [^2]: It didn't help that I made poor sizing choices when partitioning, and gave `/` a mere 20 GB that filled up in no time at all.
 [^3]: When I finally stopped dragging my feet and updated to an OS that was going to be supported for more than another month or two.
