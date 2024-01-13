@@ -23,7 +23,7 @@ Manual installation looks convoluted and painful, and I would sooner give in to 
 So, I decided to figure out why `tlmgr` wasn't working.[^5]
 Looks like `apt`'s Tex Live is older than the most up-to-date version.
 I didn't like the idea of trying to install TeX Live with something other than `apt`,[^6] so I ruled that out.
-Then I found someone explaining how to tell `tlmgr` to use an older repository which matched the TeX Live version I have.[^7]
+Then I found someone explaining [how to tell `tlmgr` to use an older repository](https://askubuntu.com/questions/1265533/tlmgr-local-tex-live-2019-is-older-than-remote-repository-2020) which matched the TeX Live version I have.[^7]
 First, you need to add the right repository for your version,
 ```
 tlmgr repository add ftp://tug.org/historic/systems/texlive/<year>/tlnet-final
@@ -36,6 +36,7 @@ I don't think you need to remove the old[^8] useless repository, but I did.
 You can see what it is with `tlmgr list` and remove it with `tlmgr repository remove <repo>`.
 
 The only wrinkle here being you still need to know what the package is actually called, and that may well not be what you put in `\usepackage{}`.
+You may want to run `tlmgr --verify-repo=none install <package>` to avoid complaints.
 
 [^1]: Well, as long as I've used it relatively seriously. We had a fling in high school, but I had even less idea what I was doing then than I do now. So, that is to say, not _that_ long.
 [^2]: It didn't help that I made poor sizing choices when partitioning, and gave `/` a mere 20 GB that filled up in no time at all.
