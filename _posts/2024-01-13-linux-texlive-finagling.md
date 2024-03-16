@@ -38,6 +38,11 @@ You can see what it is with `tlmgr list` and remove it with `tlmgr repository re
 The only wrinkle here being you still need to know what the package is actually called, and that may well not be what you put in `\usepackage{}`.
 You may want to run `tlmgr --verify-repo=none install <package>` to avoid complaints.
 
+Update: that this is the "only" wrinkle may have been a slight understatement.
+I needed[^9] LuaTeX for some slides I was working on, but while it was installed I got nothing but errors trying to use it.
+Eventually I figured out that this was a missing package, `luaotfload`, but `tlmgr` wouldn't install it.[^10]
+In the end, an additional installation was required, `sudo apt install texlive-luatex` came with what was needed to make things work right.
+
 [^1]: Well, as long as I've used it relatively seriously. We had a fling in high school, but I had even less idea what I was doing then than I do now. So, that is to say, not _that_ long.
 [^2]: It didn't help that I made poor sizing choices when partitioning, and gave `/` a mere 20 GB that filled up in no time at all.
 [^3]: When I finally stopped dragging my feet and updated to an OS that was going to be supported for more than another month or two.
@@ -46,3 +51,5 @@ You may want to run `tlmgr --verify-repo=none install <package>` to avoid compla
 [^6]: I have had too many weird updating issues on this computer to be cavalier about adding more to the pile. The software updater has never worked quite right.
 [^7]: It feels like this is something `tlmgr` should be able to figure out, if it knows the error's cause, but who am I to argue?
 [^8]: Well, new, actually, but old as in "being replaced."
+[^9]: I am very attached to Fira Sans, okay? With the Metropolis theme it makes for some very elegant slides.
+[^10]: Apparently `tlmgr` won't do installations that require anything that doesn't live in [texmf-dist](https://tex.stackexchange.com/questions/264667/texliveonfly-is-not-relocatable-so-it-isnt-being-installed-by-tlmgr) when in "user mode." But that's the only mode _available_ on Ubuntu, so it's a total nonstarter, despite what [the devs say on GitHub](https://github.com/lualatex/luaotfload). Yes I lost nearly two hours of my life to these less-than-transparent errors.
