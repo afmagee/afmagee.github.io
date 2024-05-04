@@ -69,7 +69,7 @@ $n_{\text{sup}} \leq \frac{G_{\text{crit}}}{\tilde{G}_{\text{obs}}}$
 
 then
 
-$n_{\text{sup}} \tilde{G}_{\text{obs}} \leq G_{\text{crit}}$
+$n\_{\text{sup}} \tilde{G}\_{\text{obs}} \leq G\_{\text{crit}}$
 
 We might term this something like the maximum permissible sample size under the null (where the null is "split probabilities are the same across all chains").
 Each split gives us one of these values, and we can then take the minimum as our convergence summary.
