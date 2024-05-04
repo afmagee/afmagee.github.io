@@ -39,7 +39,9 @@ We take $0 \ln(0)$ to be 0.
 
 
 For our case,[^7] we can write this as,
-$$G = 2 \sum_i \left[ n f_i \ln \left( \frac{n f_i}{n \bar{f}} \right) + n (1 - f_i) \ln \left( \frac{n (1 - f_i)}{n (1 - \bar{f})} \right) \right]$$
+
+$G = 2 \sum_i \left[ n f_i \ln \left( \frac{n f_i}{n \bar{f}} \right) + n (1 - f_i) \ln \left( \frac{n (1 - f_i)}{n (1 - \bar{f})} \right) \right]$
+
 While this form is admittedly a bit uglier, it shows us what we're actually doing: looking at the presence and absence of splits across chains.
 We sum over chains, each of which has split frequency $f_i$ and thus $n f_i$ observations of the split, and $n (1 - f_i)$ observations where it was absent.
 The average over all chains is $\bar{f}$, which gives us our expected number of times we should see it (and not see it).
@@ -53,16 +55,21 @@ That is, if we assume the null hypothesis is true (the split frequencies are the
 
 Let $G_{\text{crit}}$ be the critical value of $G$ under the $\chi^2(m - 1)$ distribution for our given $\alpha$ (that is, $\text{Pr}(G \geq G_{\text{crit}}) = \alpha$).
 Now, notice that the actual sample size $n$ only enters into the statistic once,
-$$G = n \times 2 \sum_i \left[ f_i \ln \left( \frac{f_i}{\bar{f}} \right) + (1 - f_i) \ln \left( \frac{1 - f_i}{1 - \bar{f}} \right) \right] = n \tilde{G}$$
+
+$G = n \times 2 \sum_i \left[ f_i \ln \left( \frac{f_i}{\bar{f}} \right) + (1 - f_i) \ln \left( \frac{1 - f_i}{1 - \bar{f}} \right) \right] = n \tilde{G}$
+
 where we define $\tilde{G}$ so we can stop lugging those ugly terms around.
 We are interested in a hypothetical sample size $n_{\text{sup}}$ such that $n_{\text{sup}} \tilde{G}$ is not concerningly large.
 Just to belabor the point, because we're doing something a bit counterintuitive, we take the per-chain _frequencies_ to be fixed, and we try to imagine how many counts those would have to represent before we started saying "yes, that's too different, the frequencies are not the same among the chains."
 
 We hit "concerningly different" if $G_{\text{obs}} = n \tilde{G}_{\text{obs}} > G_{\text{crit}}$.[^9]
 So, if 
-$$n_{\text{sup}} \leq \frac{G_{\text{crit}}}{\tilde{G}_{\text{obs}}}$$
+
+$n_{\text{sup}} \leq \frac{G_{\text{crit}}}{\tilde{G}_{\text{obs}}}$
+
 then
-$$n_{\text{sup}} \tilde{G}_{\text{obs}} \leq G_{\text{crit}}$$
+
+$n_{\text{sup}} \tilde{G}_{\text{obs}} \leq G_{\text{crit}}$
 
 We might term this something like the maximum permissible sample size under the null (where the null is "split probabilities are the same across all chains").
 Each split gives us one of these values, and we can then take the minimum as our convergence summary.
