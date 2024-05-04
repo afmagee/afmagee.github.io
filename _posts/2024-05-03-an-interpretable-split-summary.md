@@ -29,7 +29,9 @@ It's rather more worrisome if we've been running the chains for half a billion g
 
 The nice thing about counts is that we've got a bunch of well-studied tools for working with them.
 For example, we have the [G-test](https://en.wikipedia.org/wiki/G-test), which has the general form,
-$$G = 2 \sum_i O_i \ln \left( \frac{O_i}{E_i} \right)$$
+
+$G = 2 \sum_i O_i \ln \left( \frac{O_i}{E_i} \right)$
+
 And the nice thing about $G$ is that it's asymptotically $\chi^2$-distributed.
 Well, one nice thing, anyways.
 Another nice thing about this statistic, as opposed to the perhaps more commonly encountered $\chi^2$ statistic for count data, is that it doesn't break down when everything is in one category.
