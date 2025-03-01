@@ -21,7 +21,7 @@ Branching processes can further be useful approximations early in an outbreak or
 I have worked on statistical models for [phylogenetic trees](https://www.biorxiv.org/content/10.1101/2021.01.14.426715v1) and [final size data](https://github.com/cdcgov/nbbp), as well as tools for understanding models [via simulation](https://github.com/cdcgov/cfa-ring-vax-widget).
 I have devised [Bayesian nonparametric models](https://doi.org/10.1371/journal.pcbi.1007999) for time-varying birth and death rates, and examined the [limits of what can be learned from data](https://www.pnas.org/doi/full/10.1073/pnas.2208851120).
 
-## Evolution
+## Computational evolutionary biology
 Evolution is both the science of the history of life and a lens through which we can better study life as we know it.
 One particularly useful toolkit for studying evolution centers around the phylogeny, an evolutionary tree that describes relationships between, say, species or viral lineages.
 Phylogenies can be used as the backbone of [systems of taxonomy](https://github.com/cdcgov/cladecombiner), to investigate [mass extinctions](https://www.biorxiv.org/content/10.1101/2021.01.14.426715v1), to study rates of [viral spread](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011640), and to examine [the geospatial dispersal patterns](https://academic.oup.com/sysbio/article/73/3/562/7665881) of viruses.
