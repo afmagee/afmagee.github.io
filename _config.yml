@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "Andrew Magee"
   avatar           : "/assets/images/afm.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Disease modeling and all things Bayesian phylogenetics."
+  bio              : "Data science, disease modeling, and computational evolutionary biology."
   location         :
   email            :
   links:
