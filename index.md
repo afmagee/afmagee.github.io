@@ -13,10 +13,6 @@ These days, my primary research interests center on the development and applicat
 I have also worked on macroevolutionary phylogenetics, model adequacy, and efficient inference methodology.
 If you have questions about phylogenetics, feel free to send me an email.
 
-## CV
-
-My CV is available <a href="./assets/CV/Andrew_Magee_CV.pdf" target="_blank">here.</a>
-
 ## Disclaimer
 This is my personal website.
 All opinions (wise and especially otherwise), rants, and, in fact, everything and anything expressed on this website should not be taken to reflect the views of my current or any of my previous employers.
