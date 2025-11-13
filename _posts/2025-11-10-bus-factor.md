@@ -1,4 +1,8 @@
-# On a generalized Bus Factor
+---
+title: "On a generalized Bus Factor"
+author_profile: true
+layout: single
+---
 
 ## Introduction
 Many have previously proposed to measure resiliency of projects or organizations via the "Bus Factor." 
