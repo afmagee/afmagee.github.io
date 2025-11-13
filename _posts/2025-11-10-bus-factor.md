@@ -6,10 +6,10 @@ layout: single
 
 ## Introduction
 Many have previously proposed to measure resiliency of projects or organizations via the "Bus Factor." 
-Bus Factors take values in the positive integers $\{\mathbb{Z}^{+}\}$.
+Bus Factors take values in the positive integers $\mathbb{Z}^{+}$.
 
 The Standard Bus Factor (SBF) is, loosely, the number of people who must be removed from their roles befall before a crucial system cannot be maintained (or similar, such as a project needing to be suspended).
-The model of resiliency underlying the SBF is of non-exclusive or.
+The model of resiliency underlying the SBF is of non-exclusive "or."
 That is, the system will work if individual 1 is present _or_ individual 2 is present _or_... and so forth.
 Thus, resiliency increases with increasing SBF.
 
@@ -25,7 +25,7 @@ Under the ABF model, failure occurs if one out of any number of other individual
 This suggests that we might instead measure and-based Bus Factors in terms of fractions.
 Thus, $\frac{1}{3}$ would indicate that if one out of any three key people were bussed, failure would occur, and as the fraction decreases, so does stability.
 
-Thus we propose replacing the SBF and ABF with the Unified Bus Factor (UBF), which takes values in $\{\frac{1}{\mathbb{Z}^{+}}, \mathbb{Z}^{+}\}$.
+Thus we propose replacing the SBF and ABF with the Unified Bus Factor (UBF), which takes values in $\frac{1}{\mathbb{Z}^{+}} \cup \mathbb{Z}^{+}$.
 The UBF increases with increasing stability, and encompasses both the SBF and ABF.
 A UBF of 2 indicates that _either_ of two people are sufficient for resiliency, while a value of 1/2 indicates that _both_ are required.
 As the SBF is undefined for values less than 1, we further suggest that the UBF can in general be safely used implicitly, requiring only (ill-advised) usage of the ABF to be qualified.
