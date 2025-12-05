@@ -87,7 +87,7 @@ Alas.
 [^2]: This is why we have sandbox repos where we FA before inevitably FOing.
 [^3]: This is just a question of continuous model parameters, so it fits in the usual statistical toolkit just fine.
 [^4]: For example, fit the one- and two-tree models to real data, compute the difference in likelihood. Then, to get the null distribution, simulate a few hundred alignments under the one-tree model. Fit both one- and two-tree models to each, record the difference in likelihood. Easy, but slow.
-[^5]: Though perhaps this is a good use-case for one of our 19 dubious approaches?
+[^5]: Though perhaps this is a good use-case for one of our [19 dubious approaches](https://academic.oup.com/sysbio/article/69/2/209/5555782) for fast approximate marginal likelihoods?
 [^6]: And it didn't when I tried to explain it to a much smarter colleague, so perhaps again I should have known I was destined for trouble.
 [^7]: As always, the statistician's crutch.
 [^8]: At least here where we're not simulating funky non-neutral substitution models.
