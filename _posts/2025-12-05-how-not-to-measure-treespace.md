@@ -52,7 +52,7 @@ Now, the question, does it work?
 The answer would seem to be yes.
 When I simulate 1000 times with $k = 6$, the best-fitting Chi-squared distribution has 10 degrees of freedom, which is the right answer.
 
-![Histogram of 1000 samples of the LRT statistic with the two Normal models under consideration in grey and k = 6. Best-fitting Chi-squared distribution in black has 10 degrees of freedom.](../assets/images/posts/2025-12-06_norm_dim.png)
+![Histogram of 1000 samples of the LRT statistic with the two Normal models under consideration in grey and k = 6. Best-fitting Chi-squared distribution in black has 10 degrees of freedom.](../assets/images/posts/2025-12-05_norm_dim.png)
 
 ## The results for trees
 
@@ -67,7 +67,7 @@ However, when I summarized these simulations, to my surprise I found that the de
 This meant that I was inferring that the number of free parameters a tree was worth was... 0.
 Because all the free parameters were going into the branch lengths on the second tree.
 
-![I'm pretty sure that a tree is worth more than 0 free parameters, but the simulations aren't exactly backing me up on that.](../assets/images/posts/2025-12-06_LRT_dim.png)
+![I'm pretty sure that a tree is worth more than 0 free parameters, but the simulations aren't exactly backing me up on that.](../assets/images/posts/2025-12-05_LRT_dim.png)
 
 ## What went wrong?
 
