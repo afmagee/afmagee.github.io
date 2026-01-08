@@ -7,7 +7,9 @@ layout: single
 I like a good crazy idea[^1].
 I also, clearly, have a problem with answers in search of questions[^2].
 In "a little bit of column A, a lot of column B": bootstrapping branching times in a time-calibrated phylogeny.
-This is only a little crazy, because in phylogenetic birth-death models where all taxa are sampled at the present, divergence times are 
+This is only a little crazy, because in time-varying phylogenetic birth-death models where all taxa are sampled at the present, [divergence times are IID.](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btt153).
+Why is it an answer in search of a solution?
+Let's take a look.
 
 ## The good
 
