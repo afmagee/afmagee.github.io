@@ -51,9 +51,11 @@ Let's call $\mathcal{E}$ be the event that the lineage goes extinct, $\mathcal{N
 Then let $\mathrm{Pr}(\mathcal{E}| t, \Delta t)$ the probability that it goes extinct between $t$ and $t + \Delta t$.
 
 Extinction probabilities are propagated according to equations of the form
+
 $$
 E(t + \Delta t) = \mathrm{Pr}(\mathcal{N}| t, \Delta t) E(t) + \mathrm{Pr}(\mathcal{E}| t, \Delta t) + \mathrm{Pr}(\mathcal{B}| t, \Delta t) E(t)^2
 $$
+
 These correspond to the three things that can happen in the interval: absolutely nothing, it goes extinct, or there's a birth.
 If nothing happens, then it still has to go extinct eventually, hence the $E(t)$ in that term.
 If it goes extinct, end of story, extinction achieved.
@@ -61,6 +63,7 @@ And if there's a birth, both lineages have to then go extinct, hence the $E(t)^2
 
 If we want to allow multi-births, only this last term changes, because now there are many possibilities: a birth event with 1 child, 2 children, and so on.
 All of these will eventually have to go extinct, so the equation becomes
+
 $$
 E(t + \Delta t) = \mathrm{Pr}(\mathcal{N}| t, \Delta t) E(t) + \mathrm{Pr}(\mathcal{E}| t, \Delta t) + \mathrm{Pr}(\mathcal{B}| t, \Delta t) E(t) \left[ \sum_{\nu} E(t)^\nu \mathrm{Pr}(\nu) \right]
 $$
@@ -75,19 +78,26 @@ We could assume that the original one dies and then $1 + \nu$ lineages are born,
 
 What would play nicely with a sum of this form?
 The [geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution) seems a likely candidate, with parameter $\theta \in [0,1]$ and random variable $\nu$ the PMF is
+
 $$
 \mathrm{Pr}(\nu) = \theta(1 - \theta)^{\nu - 1}
 $$
+
 Where the Geometric goes, typically goes the [Negative Binomial](https://en.wikipedia.org/wiki/Negative_binomial_distribution), of which it is a special case.
 Adding parameter $r$, and shopping around for the [right parameterization](https://en.wikipedia.org/wiki/Negative_binomial_distribution#Alternative_formulations) we get,
+
 $$
 \mathrm{Pr}(\nu) = {\nu + r - 1 \choose \nu} \theta^\nu(1 - \theta)^r
 $$
+
 There's also the [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution) (which allows any $\theta > 0$),
+
 $$
 \mathrm{Pr}(\nu) = e^{-\theta} \frac{\theta^\nu}{\nu!}
 $$
+
 A final candidate is the [Logarithmic distribution](https://en.wikipedia.org/wiki/Logarithmic_distribution), for $\theta \in (0,1)$
+
 $$
 \mathrm{Pr}(\nu) = \frac{-1}{\ln(1 - \theta)} \frac{\theta^\nu}{\nu}
 $$
@@ -103,14 +113,17 @@ In this case, the Geometric looks more plausible, since it's already off by a $1
 
 Propagating $D(t)$ looks similar.
 In the typical case,
+
 $$
 D(t + \Delta t) = \mathrm{Pr}(\mathcal{N}| t, \Delta t) D(t) + 2 \mathrm{Pr}(\mathcal{B}| t, \Delta t) D(t) E(t)
 $$
+
 This corresponds to two possibilities.
 Either nothing happens in the interval, so the straight line we see in the tree was what really happened in that time, or there's a birth where all the other lineages go extinct, and the straight line we see is simply all that's left.
 I think we can interpret the 2 as ${2 \choose 1}$, that is, pick one of the two lineages to survive, as we can't distinguish them.
 
 The generalization would then be,
+
 $$
 D(t + \Delta t) = \mathrm{Pr}(\mathcal{N}| t, \Delta t) D(t) + \mathrm{Pr}(\mathcal{B}| t, \Delta t) D(t) \left[ \sum_{\nu} {\nu \choose 1} E(t)^\nu \mathrm{Pr}(\nu) \right]
 $$
@@ -125,9 +138,11 @@ On the other hand, it simply cancels the Logarithmic's $1 / \nu$ in the denomina
 
 I was about to start doing the math,[^7] when I realized I had missed something.
 In a typical birth-death model, the contribution of the births observed at times $\mathbf{t}$ to the likelihood is very straightforwardly the product of the birth rate at all times of observed births
+
 $$
 \prod_i \lambda(t_i)
 $$
+
 But we have undone the stipulations that make it this straightforward.
 Now it's not that every birth leads to two lineages, both of which we see.
 Now every birth even leads to some number of children, some (usually) lesser number of which we see.
@@ -135,6 +150,7 @@ That last bit smuggles in the extinction probability.
 Say we see a trifurcation in the tree: were there two offspring lineages, and we're seeing all, or might there have been eight?[^8]
 
 Let there be $\nu$ lineages descending from the birth event in the tree, and $\nu\_\mathcal{E}$ be the number of unobserved extinct lineages, then the likelihood ought to be
+
 $$
 \prod_i \lambda(t_i) \left[ \sum_{\nu_\mathcal{E} \geq 0} {\nu + \nu_\mathcal{E} \choose \nu} E(t_i)^{\nu_\mathcal{E}} \mathrm{Pr}(\nu + \nu_\mathcal{E}) \right]
 $$
@@ -150,6 +166,7 @@ The $1 / \nu$ in the PMF reacted poorly with the combinatorial coefficient in th
 ### $\lambda(t)$ revisited
 
 Replacing $E(t)$ with $E$ to reduce clutter, we want the following to work out to something nice
+
 $$
 \sum_{\nu_\mathcal{E} \geq 0} {\nu + \nu_\mathcal{E} \choose \nu} E^{\nu_\mathcal{E}} \theta (1 - \theta)^{(\nu + \nu_\mathcal{E}) - 1}
 $$
@@ -163,16 +180,19 @@ $$
 $$
 
 Define $p := E (1 - \theta)$
+
 $$
 \frac{\theta (1 - \theta)^{\nu - 1}}{(1 - p)^{\nu + 1}} \sum_{\nu_\mathcal{E} \geq 0} {\nu + \nu_\mathcal{E} \choose \nu} p^{\nu_\mathcal{E}} (1 - p)^{\nu + 1}
 $$
 
 Note that
+
 $$
 {\nu + \nu_\mathcal{E} \choose \nu} = \frac{(\nu + \nu_\mathcal{E})!}{\nu! \nu_\mathcal{E}!} = {\nu + \nu_\mathcal{E} \choose \nu_\mathcal{E}}
 $$
 
 Ergo
+
 $$
 \frac{\theta (1 - \theta)^{\nu - 1}}{(1 - p)^{\nu + 1}} \sum_{\nu_\mathcal{E} \geq 0} {\nu + \nu_\mathcal{E} \choose \nu_\mathcal{E}} p^{\nu_\mathcal{E}} (1 - p)^{\nu + 1}
 $$
@@ -183,6 +203,7 @@ Before we even think about cleaning it up, we need to see that the other terms w
 ### $D(t)$ revisited
 
 We need this sum to work out too
+
 $$
 \sum_{\nu \geq 1} \nu E^\nu \theta (1 - \theta)^{\nu - 1}
 $$
@@ -192,15 +213,19 @@ $$
 $$
 
 Define $(1 - p) := E (1 - \theta)$
+
 $$
 \frac{\theta}{p(1 - \theta)} \sum_{\nu \geq 1} \nu (1 - p)^\nu p
 $$
 
 We can expand the summand to include $\nu = 0$ where it is 0,
+
 $$
 \frac{\theta}{p(1 - \theta)} \sum_{\nu \geq 0} \nu (1 - p)^\nu p
 $$
+
 And now we can recognize the sum as the expectation of a $\mathrm{Geometric}(\nu; p)$-distributed random variable,[^10] but the 0-including kind of Geometric, so we can simplify to
+
 $$
 \frac{\theta}{p(1 - \theta)} \frac{1 - p}{p} = \frac{\theta (1 - p)}{p^2(1 - \theta)}
 $$
@@ -208,6 +233,7 @@ $$
 ### $E(t)$ revisited
 
 The last, though perhaps most important, thing that we need to work out nicely is
+
 $$
 \sum_{\nu \geq 1} E(t)^\nu \theta (1 - \theta)^{\nu - 1}
 $$
@@ -217,11 +243,13 @@ $$
 $$
 
 Using $p := E (1 - \theta)$ again
+
 $$
 \frac{\theta}{(1 - \theta)} \sum_{\nu \geq 1} p^\nu
 $$
 
 This is everyone's favorite geometric sequence, with a sum of $p / (1 - p)$, yielding
+
 $$
 \frac{\theta p}{(1 - \theta) (1 - p)}
 $$
