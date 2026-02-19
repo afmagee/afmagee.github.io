@@ -15,7 +15,9 @@ Let us track the frequency of a split across $m$ chains (each containing $n$ sam
 The average across all chains is $\bar{f}$.
 (These are our per-chain and pooled estimates of the split's probability.)
 The SDSF is either,
+
 $$\text{SDSF} = \sqrt{ \frac{1}{m} \sum_{i=1}^{m} (f_i - \bar{f})^2 }$$
+
 or $\sqrt{m / (m - 1)}$ times that if you want to use the Bessel correction and the unbiased sample SD.
 
 I've written in more depth about split frequencies [here](https://projecteuclid.org/journals/bayesian-analysis/volume-19/issue-2/How-Trustworthy-Is-Your-Tree-Bayesian-Phylogenetic-Effective-Sample-Size/10.1214/22-BA1339.full)[^1], and as with many things in phylogenetics, you can find it in the [MrBayes manual](https://github.com/NBISweden/MrBayes/blob/develop/doc/manual/Manual_MrBayes_v3.2.pdf).
@@ -65,11 +67,14 @@ Substituting $\bar{f}$ for the true mean, the count in chain $i$ is $n f_i$ whic
 What is the variance?
 If the samples in each chain are independent (as we typically assume in convergence diagnostics), it is $n \bar{f} (1 - \bar{f})$.
 Therefore, we can turn to our old friend the central limit theorem to assert that,
+
 $$\frac{n f_i - n \bar{f}}{\sqrt{n \bar{f} (1 - \bar{f})}}$$
+
 is asymptotically Normal(0,1).
 
 
 Armed with this,
+
 $$
 \begin{align*}
 \text{SDSF} &= \sqrt{ \frac{1}{m} \sum_{i=1}^{m} (f_i - \bar{f})^2 }\\
