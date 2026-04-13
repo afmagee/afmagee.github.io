@@ -2,9 +2,5 @@
 main:
   - title: "Home"
     url: https://afmagee.github.io/
-  - title: "Statistical and scientific interests"
-    url: /research_interests/
-  - title: "Code and Software"
-    url: /code_and_software/
   - title: "Blog"
     url: /blog/
