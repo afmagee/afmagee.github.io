@@ -98,13 +98,13 @@ $$
 where $s\_{\text{WM}}^2$ is the average of the $m$ per-chain quantities
 
 $$
-s\_{\text{WM}, k}^2 = \frac{1}{n (n - 1)} \sum\_{i} \sum\_{j} d(x\_{ki}, x\_{kj})^2
+s_{\text{WM}, k}^2 = \frac{1}{n (n - 1)} \sum_{i} \sum_{j} d(x_{ki}, x_{kj})^2
 $$
 
 and where $\hat{\sigma^2}\_{\text{WM}}$ is calculated analogously to $\hat{\sigma^2}$ but using
 
 $$
-B\_{\text{WM}} = \frac{1}{(m - 1)m n^2} \sum\_k \sum\_\ell \sum\_i \sum\_j (x\_{ki}, x\_{\ell j})^2
+B_{\text{WM}} = \frac{1}{(m - 1)m n^2} \sum_k \sum_\ell \sum_i \sum_j (x_{ki}, x_{\ell j})^2
 $$
 
 ## My memory is made the fool
