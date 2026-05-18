@@ -9,7 +9,8 @@ This is, give or take the field dropping some terms from the original for conven
 [Whidden and Matsen (2015)](https://academic.oup.com/sysbio/article/64/3/472/1632660) proposed what they called a "Gelman-Rubin-like" diagnostic as a generalization to phylogenies.
 
 I was, when I started writing this, pretty sure that at some point five or six years ago I wrote out some math that shows this is a valid Fréchet generalization of the PSRF in much the same way one can generalize the [effective sample size](https://projecteuclid.org/journals/bayesian-analysis/volume-19/issue-2/How-Trustworthy-Is-Your-Tree-Bayesian-Phylogenetic-Effective-Sample-Size/10.1214/22-BA1339.full).
-But the more I look at all this math, the more I think that I either didn't actually manage to do so, or, if I did, I got extraordinarily lucky.
+But the more I look at all this math, the more I think that I didn't actually manage to do so.
+Or, perhaps, I got extraordinarily lucky then and goofed this time around.
 
 ## PSRF
 
@@ -33,18 +34,18 @@ $$
 B = \frac{n}{m - 1}\sum_{k} (\bar{X}_{k \cdot} - \bar{X})^2
 $$
 
-So, when all independent MCMC runs are sampling the same density, $B \to 0$ as $n \to \infty$[^4], so $\hat{R} \to 1$.
+So, when all independent MCMC runs are sampling the same density, $B \to 0$ as $n \to \infty$,[^4] so $\hat{R} \to 1$.
 
 ### To $B$ or not to $B$
 
-It may prove helpful later to have some idea what $B$ really is, if we're going to start trying to generalize it and otherwise muck with math in its general vicinity.
+It may prove helpful later[^9] to have some idea what $B$ really is, if we're going to start trying to generalize it and otherwise muck with math in its general vicinity.
 
 To start, let us adopt a mixture distribution view of the situation.
 We have $m$ component distributions with equal weight $1/m$ and a categorical variable for which component $k$ a given one of the $mn$ total samples comes from.
 Let $Z$ be the component-defining categorical variable.
 
 Now we have to be careful of randomness.
-The sample mean of chain $k$, $\bar{X}_{k \cdot}$, is a random variable, as is the grand mean $\bar{X}$.
+The sample mean of chain $k$, $\bar{X}\_{k \cdot}$, is a random variable, as is the grand mean $\bar{X}$.
 They are also _estimates_
 
 $$
@@ -75,7 +76,6 @@ $$
 $$
 
 So, $B/n$ is a term _estimating_ the variance in the mixture component's means.
-
 It feels worth noting, since we've gone to the trouble to write this all out, that this is one of two components in the [law of total variance](https://en.wikipedia.org/wiki/Law_of_total_variance)
 
 $$
@@ -337,3 +337,4 @@ I'll add a link to a follow-up when I invariably find some of my math errors in 
 [^6]: This reminds me why someone much wiser than me told me once to number every equation in a paper. Live and learn.
 [^7]: In other words, if you've got a gnarly starting tree problem, and you use the same tree to initialize all runs, you shouldn't really use this. Though I've seen enough runs go off and fail to converge from the same starting tree to be less paranoid about this than I used to be, as long as the runs are long and the starting tree is more "in the neighborhood of the peak" than "at the peak."
 [^8]: I say "should" because I haven't absolutely convinced myself this is correct. It feels like it's right, but when people compute the [Energy Score](https://frazane.github.io/scoringrules/api/energy/), which involves this same average squared difference term disguised as a Norm, it's not actually what people do. Probably because there are estimates of it that don't require $\mathcal{O}(n^2)$ comparisons. But still, one wonders. And one wonders what MCMC-induced autocorrelation does to all this.
+[^9]: In the end, I think I could have managed without it, but it helped get me on the right track. It's usually worth going one level deeper of what something _is_ before working with it.
