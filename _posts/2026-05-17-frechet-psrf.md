@@ -86,13 +86,13 @@ For mixture distributions, this tells us that the total (marginal) variance is b
 
 ## Whidden and Matsen (2015)
 
-Index chains such that $x_{ki}$ is the $i$th sample from chain $k$.
+Index chains such that $x\_{ki}$ is the $i$th sample from chain $k$.
 Let $
 d(x,y)$ be a distance function, such as the SPR distance, as Whidden and Matsen (2015) used.
 They proposed to quantify convergence with
 
 $$
-\hat{R}\_{\text{WM}} = \sqrt{\frac{\hat{\sigma^2}\_{\text{WM}}}{s\_{\text{WM}}^2}}
+\hat{R}_{\text{WM}} = \sqrt{\frac{\hat{\sigma^2}_{\text{WM}}}{s_{\text{WM}}^2}}
 $$
 
 where $s\_{\text{WM}}^2$ is the average of the $m$ per-chain quantities
