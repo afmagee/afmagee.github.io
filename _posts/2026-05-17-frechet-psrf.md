@@ -110,23 +110,24 @@ $$
 ## My memory is made the fool
 
 When I started writing this, I thought I was going to unpack Whidden and Matsen's equation rather directly.
-Instead, it turned out to be easier to derive the Fréchet PSRF from scratch, which we'll do in this section, and in the next section we'll compare them.
+After all, I did it before, right?
+Instead, it turned out to be easier to derive the ingredients of a Fréchet-generalized PSRF from scratch, which we'll do in this section, and in the next section we'll compare them.
 
-I like to think of Fréchet generalizations as what you get when you substitute squared arbitrary distance functions for Euclidean distances.
-For a distribution on real numbers, the mean is the point minimizing the squared Euclidian distance to all other points, weighting by the distibution's PMF.
-The sample mean is the point minimizing the squared Euclidean distance to the sampled points.
-The variance is the average squared Euclidean distance from the mean to the other points.
-Give or take a Bessel correction, the sample variance is the average squared Euclidean distance from the sample mean to the sampled points.
-Swap "point" for "value"and remove the qualifier "Euclidean" and you're in Fréchet land.
+I like to think of Fréchet generalizations as what you get when you substitute (squared) arbitrary distance functions for (squared) Euclidean distances.
+For a distribution on real numbers, the mean is the value minimizing the squared Euclidian distance to all other values, weighting by the distibution's PDF or PMF.
+The sample mean is the point minimizing the squared Euclidean distance to the sampled values.
+The variance is the average squared Euclidean distance from the mean to the rest of the distribution, weighted by the PDF or PMF.
+Give or take a Bessel correction, the sample variance is the average squared Euclidean distance from the sample mean to the sampled values.
+Remove the qualifier "Euclidean" and you're in Fréchet land.
 
-Now let's look at the two terms in the PSRF-like-quantity of Whidden and Matsen (2015) and see how they look in a Fréchet light.
+Now let's look at the two key terms in the PSRF and see what that looks like in Fréchet land.
 
 ### The easy one: $s^2$
 
 The Fréchet sample variance of a single MCMC run is, per Supplementary Equation 15 of [a paper of mine on the ESS of phylogenetic trees](https://projecteuclid.org/journals/bayesian-analysis/volume-19/issue-2/How-Trustworthy-Is-Your-Tree-Bayesian-Phylogenetic-Effective-Sample-Size/10.1214/22-BA1339.full)
 
 $$
-s\_{\text{F}, k}^2 = \frac{1}{n (n - 1)} \sum\_{j > i} d(x\_{ki}, x\_{kj})^2
+s_{\text{F}, k}^2 = \frac{1}{n (n - 1)} \sum_{j > i} d(x_{ki}, x_{kj})^2
 $$
 
 ### The harder one: $B$
@@ -142,8 +143,8 @@ $$
 $$
 
 In the tree ESS paper, we used this equation to estimate the covariance, because we could separately estimate the variances, and because we could chant "MCMCCLT" and call the last term 0.
-But for our purposes here, let's take $\xi$ and $\upsilon$ to be from independent MCMC runs, $X_{k \cdot}$ and $X_{\ell \cdot}$.
-Now we know the covariance is 0,[^7] and we can still get the variances separately, so if we rearrange the equation, make the Fréchet substitution of $d(\xi,\upsilon)^2$ for $(\xi - \upsilon)^2$, and use our chain-based variables, we get
+But for our purposes here, we have samples from independent MCMC runs, so $\xi$ and $\upsilon$ are $X_{k \cdot}$ and $X_{\ell \cdot}$, and thus their covariance is 0.[^7] 
+We can still get the variances separately, so if we rearrange the equation, make the Fréchet substitution of $d(\xi,\upsilon)^2$ for $(\xi - \upsilon)^2$, and use our chain-based variables, we get
 
 $$
 \left( \mathbb{E}[X_{k \cdot}] - \mathbb{E}[X_{\ell \cdot}] \right)^2 = \mathbb{E}[(X_{k \cdot} - X_{\ell \cdot})^2] - \mathrm{Var}(X_{k \cdot}) - \mathrm{Var}(X_{\ell \cdot})
@@ -152,14 +153,14 @@ $$
 The practical use of this equation is _estimating_ the LHS by using the estimates we get for the terms on the RHS.
 What estimates, you ask?
 The variances are [as above](#the-easy-one).
-The remaining term should be estimable as the average of all $X\_{k i}$ $X\_{\ell j}$ comparisons.[^8]
+The remaining term should be estimable as the average of all $X\_{k i}$, $X\_{\ell j}$ comparisons.[^8]
 Putting that together, giving it a convenient shorthand for later, and not putting hats over terms that deserve it because I can't make `\widehat` work in markdown LaTeX, we get
 
 $$
 d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2 = \left( \mathbb{E}[X_{k \cdot}] - \mathbb{E}[X_{\ell \cdot}] \right)^2 = \\
-\frac{1}{n^2} \sum\_{i,j} d(X\_{k i}, X\_{\ell j})^2\\
-- \frac{1}{n (n - 1)} \sum\_{j > i} d(x\_{ki}, x\_{kj})^2\\
-- \frac{1}{n (n - 1)} \sum\_{j > i} d(x\_{\ell i}, x\_{\ell j})^2
+\frac{1}{n^2} \sum_{i,j} d(X_{k i}, X_{\ell j})^2\\
+- \frac{1}{n (n - 1)} \sum_{j > i} d(x_{ki}, x_{kj})^2\\
+- \frac{1}{n (n - 1)} \sum_{j > i} d(x_{\ell i}, x_{\ell j})^2
 $$
 
 Now, right about now it looks like we've solved the Wrong Problem.
@@ -168,19 +169,19 @@ But if we look at the equations that gave us the Fréchet variance, we can turn 
 For $n$ samples of a variable $X$,
 
 $$
-\frac{1}{n - 1} \sum\_i (X\_i - \bar{X})^2 = \frac{1}{n(n - 1)} \sum\_{j > i} (X\_i - X\_j)^2
+\frac{1}{n - 1} \sum_i (X_i - \bar{X})^2 = \frac{1}{n(n - 1)} \sum_{j > i} (X_i - X_j)^2
 $$
 
 Instead, we consider the $m$ sample _means_ of the chains, and we get
 
 $$
-\frac{1}{m - 1} \sum\_i (\bar{X}\_k - \bar{X})^2 = \frac{1}{m(m - 1)} \sum\_{\ell > k} (\bar{X}\_k - \bar{X}\_\ell)^2
+\frac{1}{m - 1} \sum_i (\bar{X}_k - \bar{X})^2 = \frac{1}{m(m - 1)} \sum_{\ell > k} (\bar{X}_k - \bar{X}_\ell)^2
 $$
 
 And there we have it, the LHS is $B/n$ and the RHS we just showed how to compute.
 
 $$
-\frac{B\_{\mathrm{F}}}{n} = \frac{1}{m (m - 1)} \sum\_{\ell > k} d(\bar{X}\_{k \cdot}, \bar{X}\_{\ell \cdot})^2
+\frac{B_{\mathrm{F}}}{n} = \frac{1}{m (m - 1)} \sum_{\ell > k} d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2
 $$
 
 ## Wherefore art thou Fréchet
@@ -192,7 +193,7 @@ As this is a distance matrix, the diagonal is $\mathbf{0}$, and the two triangul
 Thus
 
 $$
-s\_{\text{WM}, k}^2 = 2 s\_{\text{F}, k}^2
+s_{\text{WM}, k}^2 = 2 s_{\text{F}, k}^2
 $$
 
 To understand $B\_{\text{WM}}$, we need to do some rewriting of what we wrote above.
@@ -202,19 +203,19 @@ We'll use some dubious notation to revisit and slightly tweak an earlier definit
 
 $$
 d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2 = 
-\mathbb{E}[d(X\_{k \cdot}, X\_{\ell \cdot})^2]
-- \mathrm{Var}(X\_{k \cdot})
-- \mathrm{Var}(X\_{\ell \cdot})
+\mathbb{E}[d(X_{k \cdot}, X_{\ell \cdot})^2]
+- \mathrm{Var}(X_{k \cdot})
+- \mathrm{Var}(X_{\ell \cdot})
 $$
 
 Plugging this into our compact definition of $B\_{\mathrm{F}}$, we get
 
 $$
-B\_{\mathrm{F}} = \frac{n}{m (m - 1)} \sum\_{\ell > k}
+B_{\mathrm{F}} = \frac{n}{m (m - 1)} \sum_{\ell > k}
 \left[
-\mathbb{E}[d(X\_{k \cdot}, X\_{\ell \cdot})^2]
-- \mathrm{Var}(X\_{k \cdot})
-- \mathrm{Var}(X\_{\ell \cdot})
+\mathbb{E}[d(X_{k \cdot}, X_{\ell \cdot})^2]
+- \mathrm{Var}(X_{k \cdot})
+- \mathrm{Var}(X_{\ell \cdot})
 \right]
 $$
 
@@ -222,9 +223,9 @@ The variance terms each show up $(m - 1)$ times, one each for each $k \neq \ell$
 Condensing those terms and then cleaning up the leading fractions accordingly, we get
 
 $$
-B\_{\mathrm{F}} = 
-\frac{n}{m (m - 1)} \left[ \sum\_{\ell > k} \mathbb{E}[d(X\_{k \cdot}, X\_{\ell \cdot})^2] \right]
-- \frac{n}{m} \left[ \sum\_{k} \mathrm{Var}(X\_{k \cdot})]
+B_{\mathrm{F}} = 
+\frac{n}{m (m - 1)} \left[ \sum_{\ell > k} \mathbb{E}[d(X_{k \cdot}, X_{\ell \cdot})^2] \right]
+- \frac{n}{m} \left[ \sum_{k} \mathrm{Var}(X_{k \cdot})]
 \right]
 $$
 
@@ -235,81 +236,81 @@ To be properly clear, let's put this in more explicit sum form.
 So, now we go backwards, and plug in our actual definitions from when we defined $d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2$, yielding
 
 $$
-B\_{\mathrm{F}} = 
-\frac{n}{m (m - 1)} \left[ \sum\_k \sum\_{\ell > k} \sum\_i \sum\_j \frac{1}{n^2} d(x\_{k i}, x\_{\ell j})^2 \right]\\
-- \frac{n}{m} \left[ \sum\_{k} \sum\_i \sum\_{j > i} \frac{1}{n (n - 1)}  d(x\_{ki}, x\_{kj})^2]
+B_{\mathrm{F}} = 
+\frac{n}{m (m - 1)} \left[ \sum_k \sum_{\ell > k} \sum_i \sum_j \frac{1}{n^2} d(x_{k i}, x_{\ell j})^2 \right]\\
+- \frac{n}{m} \left[ \sum_{k} \sum_i \sum_{j > i} \frac{1}{n (n - 1)}  d(x_{ki}, x_{kj})^2]
 \right]
 $$
 
 Cleaning up, we get
 
 $$
-B\_{\mathrm{F}} = 
-\frac{1}{n m (m - 1)} \left[ \sum\_k \sum\_{\ell > k} \sum\_i \sum\_j d(x\_{k i}, x\_{\ell j})^2 \right]\\
-- \frac{1}{(n - 1) m} \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2]
+B_{\mathrm{F}} = 
+\frac{1}{n m (m - 1)} \left[ \sum_k \sum_{\ell > k} \sum_i \sum_j d(x_{k i}, x_{\ell j})^2 \right]\\
+- \frac{1}{(n - 1) m} \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2]
 \right]
 $$
 
 Now we can make that first term a sum over all off-diagonal blocks, and compensate with a factor of $1/2$ in the leading fraction because distance matrices are symmetric.
 
 $$
-B\_{\mathrm{F}} = 
-\frac{1}{2 n m (m - 1)} \left[ \sum\_k \sum\_{\ell \neq k} \sum\_i \sum\_j d(x\_{k i}, x\_{\ell j})^2 \right]\\
-- \frac{1}{(n - 1) m} \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2]\right]
+B_{\mathrm{F}} = 
+\frac{1}{2 n m (m - 1)} \left[ \sum_k \sum_{\ell \neq k} \sum_i \sum_j d(x_{k i}, x_{\ell j})^2 \right]\\
+- \frac{1}{(n - 1) m} \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2]\right]
 $$
 
 We're almost done.
 $B\_{\mathrm{F}}$ is a sum over the entire matrix, diagonals and all, so let's add them back into our leading term (and balance the equation as needed).
 
 $$
-B\_{\mathrm{F}} = 
-\frac{1}{2 n m (m - 1)} \left[ \sum\_k \sum\_\ell \sum\_i \sum\_j d(x\_{k i}, x\_{\ell j})^2 \right]\\
-- \frac{1}{2 n m (m - 1)} \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2] \right]\\
-- \frac{1}{(n - 1) m} \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2] \right]
+B_{\mathrm{F}} = 
+\frac{1}{2 n m (m - 1)} \left[ \sum_k \sum_\ell \sum_i \sum_j d(x_{k i}, x_{\ell j})^2 \right]\\
+- \frac{1}{2 n m (m - 1)} \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2] \right]\\
+- \frac{1}{(n - 1) m} \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2] \right]
 $$
 
 And now we clean up.
 
 $$
-B\_{\mathrm{F}} = 
-\frac{1}{2 n m (m - 1)} \left[ \sum\_k \sum\_\ell \sum\_i \sum\_j d(x\_{k i}, x\_{\ell j})^2 \right]\\
-- \left(\frac{1}{2 n m (m - 1)}  + \frac{1}{(n - 1) m} \right) \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2] \right]
+B_{\mathrm{F}} = 
+\frac{1}{2 n m (m - 1)} \left[ \sum_k \sum_\ell \sum_i \sum_j d(x_{k i}, x_{\ell j})^2 \right]\\
+- \left(\frac{1}{2 n m (m - 1)}  + \frac{1}{(n - 1) m} \right) \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2] \right]
 $$
 
 At this point, we may have forgotten that
 
 $$
-B\_{\text{WM}} = \frac{1}{(m - 1)m n^2} \sum\_k \sum\_\ell \sum\_i \sum\_j (x\_{ki}, x\_{\ell j})^2
+B_{\text{WM}} = \frac{1}{(m - 1)m n^2} \sum_k \sum_\ell \sum_i \sum_j (x_{ki}, x_{\ell j})^2
 $$
 
 So, we have
 
 <!--
 $$
-B\_{\text{WM}} = \frac{1}{(m - 1)m n^2} \Theta
+B_{\text{WM}} = \frac{1}{(m - 1)m n^2} \Theta
 $$
 
 $$
-\Theta = B\_{\text{WM}} \times (m - 1)m n^2
+\Theta = B_{\text{WM}} \times (m - 1)m n^2
 $$
 
 $$
-B\_{\mathrm{F}} = 
-\frac{(m - 1)m n^2}{2 n m (m - 1)} B\_{\text{WM}}\\
-- \left(\frac{1}{2 n m (m - 1)}  + \frac{1}{(n - 1) m} \right) \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2] \right]
+B_{\mathrm{F}} = 
+\frac{(m - 1)m n^2}{2 n m (m - 1)} B_{\text{WM}}\\
+- \left(\frac{1}{2 n m (m - 1)}  + \frac{1}{(n - 1) m} \right) \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2] \right]
 $$ -->
 
 $$
-B\_{\mathrm{F}} = 
-\frac{n}{2} B\_{\text{WM}}
-- \left(\frac{1}{2 n m (m - 1)}  + \frac{1}{(n - 1) m} \right) \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2] \right]
+B_{\mathrm{F}} = 
+\frac{n}{2} B_{\text{WM}}
+- \left(\frac{1}{2 n m (m - 1)}  + \frac{1}{(n - 1) m} \right) \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2] \right]
 $$
 
 Alternately
 
 $$
-B\_{\text{WM}} = 
-\frac{2}{n} B\_{\mathrm{F}} + \left(\frac{1}{n^2 m (m - 1)}  + \frac{2}{n(n - 1) m} \right) \left[ \sum\_{k} \sum\_i \sum\_{j > i} d(x\_{ki}, x\_{kj})^2] \right]
+B_{\text{WM}} = 
+\frac{2}{n} B_{\mathrm{F}} + \left(\frac{1}{n^2 m (m - 1)}  + \frac{2}{n(n - 1) m} \right) \left[ \sum_{k} \sum_i \sum_{j > i} d(x_{ki}, x_{kj})^2] \right]
 $$
 
 ## TL;DR
