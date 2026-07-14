@@ -1,5 +1,5 @@
 ---
-title: "The Fréchet PSRF, part 3 (of 4)"
+title: "The Fréchet PSRF, part 3"
 author_profile: true
 layout: single
 ---
@@ -88,6 +88,7 @@ $$
 $$
 
 For the PSRF, we want the squared difference in means, so we rearrange it,
+
 $$
 (\bar{\xi} - \bar{\upsilon})^2 = 
 \frac{1}{n^2} \sum_i \sum_j (\xi_i - \upsilon_j)^2
@@ -119,11 +120,9 @@ d(\bar{\xi}, \bar{\upsilon})^2 =
 - \frac{1}{n^2} \sum_{j > i} d(\upsilon_i, \upsilon_j)^2
 $$
 
-
-
 ## $B\_{\mathrm{F}}$
 
-To get the $B\_{\mathrm{F}}$ term in the Fréchet PSRF, now we move from $\Xi$ and $\Upsilon$ to MCMC replicates ${X}_{k \cdot}$ and ${X}_{\ell \cdot}$.
+To get the $B\_{\mathrm{F}}$ term in the Fréchet PSRF, now we move from $\Xi$ and $\Upsilon$ to MCMC replicates ${X}\_{k \cdot}$ and ${X}\_{\ell \cdot}$.
 
 $$
 d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2 = 

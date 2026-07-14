@@ -208,7 +208,7 @@ $$
 To understand $B\_{\text{WM}}$, we need to do some rewriting of what we wrote above.
 
 We'll start by trying to get a birds eye view of where we're going.
-We'll use some dubious notation to revisit and slightly tweak an earlier definition of $d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2$, yielding
+We'll use some dubious notation to revisit and slightly tweak an earlier definition of $d(\bar{X}\_{k \cdot}, \bar{X}\_{\ell \cdot})^2$, yielding
 
 $$
 d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2 = 
@@ -242,7 +242,7 @@ At this point, we can perhaps finally see where this is going if we think in ter
 This is a block matrix, including both within-chain ($k = \ell$) terms and between-chain ($k \neq \ell$) terms.
 $B\_{\mathrm{F}}$ is the sum of a term proportional to the sum of the upper (or lower, if you'd rather) diagonal blocks and a term proportional to the sum of the diagonal blocks, but we're subtracting the diagonal terms.
 To be properly clear, let's put this in more explicit sum form.
-So, now we go backwards, and plug in our actual definitions from when we defined $d(\bar{X}_{k \cdot}, \bar{X}_{\ell \cdot})^2$, yielding
+So, now we go backwards, and plug in our actual definitions from when we defined $d(\bar{X}\_{k \cdot}, \bar{X}\_{\ell \cdot})^2$, yielding
 
 $$
 B_{\mathrm{F}} = 
@@ -289,7 +289,7 @@ $$
 At this point, we may have forgotten that
 
 $$
-B_{\text{WM}} = \frac{1}{(m - 1)m n^2} \sum_k \sum_\ell \sum_i \sum_j (x_{ki}, x_{\ell j})^2
+B_{\text{WM}} = \frac{1}{(m - 1)m n^2} \sum_k \sum_\ell \sum_i \sum_j d(x_{ki}, x_{\ell j})^2
 $$
 
 So, we have
