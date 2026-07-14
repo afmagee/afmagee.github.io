@@ -12,6 +12,15 @@ I was, when I started writing this, pretty sure that at some point five or six y
 But the more I look at all this math, the more I think that I didn't actually manage to do so.
 Or, perhaps, I got extraordinarily lucky then and goofed this time around.
 
+## Disclaimer
+
+I didn't quite get the math right here.
+The big picture is fine, but some of the details are wrong.
+I'm leaving it up because it's mostly right, because I don't want to re-write all the sidebars here, and because it's honest to show that mistakes happen when doing math (and science).
+
+Check out [Part 3](https://afmagee.github.io/frechet-psrf-3/) for the fix, or [Part 4](https://afmagee.github.io/frechet-psrf-2/) for the final correct version and comparison to Whidden and Matsen.
+
+
 ## PSRF
 
 Assume you have $m$ MCMC runs each with $n$ samples.

@@ -8,6 +8,14 @@ layout: single
 And wouldn't you know it, I was wrong.
 Here, I attempt to correct my math.
 
+## Disclaimer
+
+This post shows both the benefits and dangers of intuition.
+I managed to guess something close enough to the nature of the error I made [last time](https://afmagee.github.io/frechet-psrf/) to fix it.
+But wrong enough to cascade and require other weird re-correcting.
+I'm leaving it up because math is messy and sometimes we're all stumbling around in the dark.
+But I'd suggest skipping to [part 3](https://afmagee.github.io/frechet-psrf-3/).
+
 ## What did I test and how wrong was I?
 
 It's always best to start relatively simple, so I started out by testing $B$.
